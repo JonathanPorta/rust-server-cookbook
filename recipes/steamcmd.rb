@@ -25,7 +25,7 @@ end
 
 template 'c:/rust-server/start.ps1' do
   source 'rust-server.ps1'
-  variables {
+  variables({
     install_path: 'c:/rust-server/',
     name: '~aaaamazing PVE Server - No Sleepers - Noob friendly - rust.rurd4me.com',
     maxplayers: 50,
@@ -36,4 +36,4 @@ template 'c:/rust-server/start.ps1' do
     rcon_port: 5718,
     rcon_password: '',
     rcon_ip: ''
-  }
+  })
