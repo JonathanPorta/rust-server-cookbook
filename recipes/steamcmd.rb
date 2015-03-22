@@ -6,12 +6,16 @@
 
 include_recipe 'windows'
 
-remote_file 'steamcmd_package' do
-  path 'c:/tmp/steamcmd.zip'
+# Install steamcmd
+windows_zipfile node['steamcmd']['install_directory'] do
   source node['steamcmd']['pkg_url']
+  action :unzip
 end
 
-windows_zipfile node['steamcmd']['install_directory'] do
-  source 'c:/tmp/steamcmd.zip'
-  action :unzip
+windows_path node['steamcmd']['install_directory'] do
+  action :add
+end
+
+rust_steamcmd '258550' do
+  path 'c:\rust-server'
 end
