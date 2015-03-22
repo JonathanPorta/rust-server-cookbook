@@ -43,10 +43,10 @@ cookbook_file '0friendsAPI.lua' do
   path 'c:/rust-server/server/server/oxide/plugins/0friendsAPI.lua'
 end
 
-# cookbook_file 'chathandler.json' do
-#   source 'oxide/config/chathandler.json'
-#   path 'c:/rust-server/server/server/oxide/config/chathandler.json'
-# end
+cookbook_file '0friendsAPI.json' do
+  source 'oxide/config/0friendsAPI.json'
+  path 'c:/rust-server/server/server/oxide/config/0friendsAPI.json'
+end
 
 # friendsfriendlyfire:
 cookbook_file 'friendsfriendlyfire.lua' do
@@ -54,7 +54,7 @@ cookbook_file 'friendsfriendlyfire.lua' do
   path 'c:/rust-server/server/server/oxide/plugins/friendsfriendlyfire.lua'
 end
 
-# cookbook_file 'chathandler.json' do
-#   source 'oxide/config/chathandler.json'
-#   path 'c:/rust-server/server/server/oxide/config/chathandler.json'
-# end
+cookbook_file 'friendsfriendlyfire.json' do
+  source 'oxide/config/friendsfriendlyfire.json'
+  path 'c:/rust-server/server/server/oxide/config/friendsfriendlyfire.json'
+end

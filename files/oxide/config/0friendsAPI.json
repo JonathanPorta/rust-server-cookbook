@@ -1,0 +1,17 @@
+{
+  "Settings": {
+    "MaxFriends": 30
+  },
+  "Messages": {
+    "NotOnFriendlist": "{target} not found on your friendlist",
+    "CantAddSelf": "You cant add yourself",
+    "FriendAdded": "{target} is now your friend",
+    "AlreadyOnList": "{target} is already your friend",
+    "FriendRemoved": "{target} was removed from your friendlist",
+    "HelpText": "use /friend <add|remove|list> <name/steamID> to add/remove/list friends",
+    "FriendlistFull": "Your friendlist is full",
+    "List": "Friends {count}: ",
+    "NoFriends": "You dont have friends :(",
+    "PlayerNotFound": "Player not found"
+  }
+}
