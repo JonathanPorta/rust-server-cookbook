@@ -35,6 +35,14 @@ end
 nssm 'RustMultiplayerServer' do
   program 'C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe'
   args '-noexit c:/rust-server/start.ps1'
+  params(
+    DisplayName: 'RustMultiplayerServer',
+    Description: 'Service in charge of the Rust multiplayer server.',
+    AppDirectory: 'c:/rust-server/',
+    AppStdout: 'c:/rust-server/service-stdout.log',
+    AppStderr: 'c:/rust-server/service-stderr.log',
+    AppRotateFiles: 1
+  )
   action :install
 end
 
