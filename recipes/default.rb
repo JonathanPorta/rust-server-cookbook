@@ -17,7 +17,8 @@ end
 include_recipe 'rust::oxide'
 
 # Drop off the moderator/owner config
-cookbook_file 'files/server/cfg/users.cfg' do
+cookbook_file 'users.cfg' do
+  source 'server/cfg/users.cfg'
   path 'c:/rust-server/server/server/cfg/users.cfg'
 end
 
