@@ -1,0 +1,89 @@
+{
+  "Settings": {
+    "Logging": {
+      "LogToConsole": "true",
+      "LogBlockedMessages": "true",
+      "LogToFile": "false"
+    },
+    "ChatCommands": {
+      "Mute": [
+        "mute"
+      ],
+      "AdminMode": [
+        "admin"
+      ],
+      "Wordfilter": [
+        "wordfilter"
+      ],
+      "ChatHistory": [
+        "history",
+        "h"
+      ],
+      "Unmute": [
+        "unmute"
+      ],
+      "GlobalMute": [
+        "globalmute"
+      ]
+    },
+    "Wordfilter": {
+      "EnableWordfilter": "false",
+      "ReplaceFullWord": "true"
+    },
+    "AdminMode": {
+      "ReplaceChatName": "true",
+      "AdminChatName": "[Server Admin]"
+    },
+    "NameColor": {
+      "NormalUser": "#5af",
+      "AdminMode": "#ff8000"
+    },
+    "General": {
+      "ChatHistoryMaxLines": 10,
+      "BroadcastMutes": "true",
+      "BlockServerAds": "true",
+      "AllowedIPsToPost": [],
+      "EnableChatHistory": "true",
+      "MaxCharsPerLine": 64,
+      "Language": "en"
+    },
+    "AntiSpam": {
+      "EnableAntiSpam": "true",
+      "MaxLines": 4,
+      "TimeFrame": 6
+    },
+    "Groups": {
+      "EnableGroups": "false",
+      "ColorNamesOnly": "true",
+      "PrefixPosition": "left"
+    }
+  },
+  "ChatGroups": {
+    "Admin": {
+      "ShowColor": true,
+      "Prefix": "[Admin]",
+      "Permission": "admin",
+      "Color": "#FFA04A",
+      "ShowPrefix": true
+    },
+    "Donator": {
+      "ShowColor": true,
+      "Prefix": "[$$$]",
+      "Permission": "donator",
+      "Color": "#06DCFB",
+      "ShowPrefix": true
+    },
+    "VIP": {
+      "ShowColor": true,
+      "Prefix": "[VIP]",
+      "Permission": "vip",
+      "Color": "#59ff4a",
+      "ShowPrefix": true
+    }
+  },
+  "WordFilter": {
+    "cunt": "****",
+    "bitch": "sweety",
+    "fucking hell": "lovely heaven"
+  }
+}

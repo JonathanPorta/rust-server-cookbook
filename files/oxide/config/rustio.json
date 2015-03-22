@@ -1,0 +1,10 @@
+{
+  "displayMonuments": true,
+  "displayBuildings": false,
+  "displayMortality": true,
+  "broadcastSpawns": true,
+  "broadcastDeaths": true,
+  "broadcastChat": true,
+  "defaultLanguage": "en",
+  "welcomeMessage": "Lost? See your location on the live map: http://gameops.rurd4me.com:28055"
+}
