@@ -33,8 +33,8 @@ template 'c:/rust-server/start.ps1' do
 end
 
 nssm 'RustMultiplayerServer' do
-  program 'c:/rust-server/start.ps1'
-  # args '-jar C:/path/to/my-executable.jar'
+  program 'C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe'
+  args '-noexit c:/rust-server/start.ps1'
   action :install
 end
 
