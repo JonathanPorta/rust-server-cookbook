@@ -18,5 +18,5 @@ windows_path node['steamcmd']['install_directory'] do
 end
 
 rust_steamcmd '258550' do
-  path ['rust']['install_directory']
+  path node['rust']['install_directory']
 end
