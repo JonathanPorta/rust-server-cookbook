@@ -24,7 +24,7 @@ rust_steamcmd '258550' do
 end
 
 template 'c:/rust-server/start.ps1' do
-  source 'rust-server.ps1'
+  source 'rust-server.ps1.erb'
   variables({
     install_path: 'c:/rust-server/',
     name: '~aaaamazing PVE Server - No Sleepers - Noob friendly - rust.rurd4me.com',
