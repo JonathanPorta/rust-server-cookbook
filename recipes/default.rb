@@ -31,6 +31,7 @@ template 'c:/rust-server/start.ps1' do
     rcon_password: '',
     rcon_ip: ''
   })
+  notifies :restart, 'service[RustMultiplayerServer]', :immediately
 end
 
 # Install, configure and start the server service
@@ -49,4 +50,5 @@ nssm 'RustMultiplayerServer' do
     AppRestartDelay: 1000
   )
   action :install
+  notifies :restart, 'service[RustMultiplayerServer]', :immediately
 end

@@ -16,4 +16,5 @@ windows_zipfile node['rust']['install_directory'] do
   source node['oxide']['pkg_url']
   action :unzip
   overwrite true
+  notifies :restart, 'service[RustMultiplayerServer]', :immediately
 end
