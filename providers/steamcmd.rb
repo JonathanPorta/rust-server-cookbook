@@ -37,6 +37,9 @@ def load_current_resource
   end
 end
 
+def directory_exists?(path)
+  Dir.exist? path
+end
 
 def install_steam_app
   beta = ''
