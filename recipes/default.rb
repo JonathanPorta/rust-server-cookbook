@@ -15,6 +15,7 @@ rust_steamcmd '258550' do
 end
 
 include_recipe 'rust::oxide'
+include_recipe 'rust::plugins'
 
 # Drop off the moderator/owner config
 cookbook_file 'users.cfg' do
