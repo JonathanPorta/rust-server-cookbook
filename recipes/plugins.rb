@@ -31,3 +31,8 @@ cookbook_file 'deathnotes.py' do
   source 'oxide/plugins/deathnotes.py'
   path 'c:/rust-server/server/server/oxide/plugins/deathnotes.py'
 end
+
+cookbook_file 'deathnotes.json' do
+  source 'oxide/config/deathnotes.json'
+  path 'c:/rust-server/server/server/oxide/config/deathnotes.json'
+end

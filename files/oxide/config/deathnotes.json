@@ -1,0 +1,188 @@
+{
+  "ANIMALS": {
+    "STAG": "Deer",
+    "CHICKEN": "Chicken",
+    "WOLF": "Wolf",
+    "BEAR": "Bear",
+    "BOAR": "Boar"
+  },
+  "MESSAGES": {
+    "COLD": [
+      "{victim} froze to death.",
+      "{victim} is an ice cold dead man."
+    ],
+    "ANIMAL KILL SLEEP": [
+      "{victim} killed by a {animal}, while sleeping.",
+      "{animal} caught {victim}, while sleeping."
+    ],
+    "SLASH": [
+      "{attacker} slashed {victim} into pieces. (With {weapon}, in the {bodypart})",
+      "{attacker} has sliced {victim} into a million little pieces."
+    ],
+    "SLASH SLEEP": [
+      "{attacker} slashed {victim} into pieces, while sleeping. (With {weapon}, in the {bodypart})",
+      "{attacker} killed {victim} with a {weapon}, while sleeping."
+    ],
+    "DROWNED": [
+      "{victim} drowned.",
+      "{victim} thought he could swim, but guess not."
+    ],
+    "ANIMAL KILL": [
+      "{victim} killed by a {animal}.",
+      "{victim} wasn't fast enough and a {animal} caught him."
+    ],
+    "BLEEDING": [
+      "{victim} bled to death.",
+      "{victim} emptied in blood."
+    ],
+    "BULLET SLEEP": [
+      "{attacker} killed {victim}, while sleeping. (In the {bodypart} with {weapon}, from {distance}m)",
+      "{attacker} killed {victim} with a {weapon}, while sleeping."
+    ],
+    "HUNGER": [
+      "{victim} starved to death.",
+      "{victim} was a bad hunter, and died of hunger."
+    ],
+    "THIRST": [
+      "{victim} died of thirst.",
+      "Dehydration has killed {victim}, what a bitch!"
+    ],
+    "ARROW SLEEP": [
+      "{attacker} killed {victim} with an arrow on the {bodypart}, while {victim} was asleep.",
+      "{attacker} killed {victim} with a {weapon}, while sleeping."
+    ],
+    "HEAT": [
+      "{victim} burned to death.",
+      "{victim} turned into a human torch."
+    ],
+    "SUICIDE": [
+      "{victim} committed suicide.",
+      "{victim} has put an end to his life."
+    ],
+    "ANIMAL DEATH": "{attacker} killed a {animal}. (In the {bodypart} with {weapon}, from {distance}m)",
+    "STAB": [
+      "{attacker} stabbed {victim} to death. (With {weapon}, in the {bodypart})",
+      "{attacker} stabbed a {weapon} in {victim}'s {bodypart}."
+    ],
+    "BLUNT": [
+      "{attacker} killed {victim}. (With {weapon}, in the {bodypart})",
+      "{attacker} made {victim} die of a {weapon} trauma."
+    ],
+    "STAB SLEEP": [
+      "{attacker} stabbed {victim} to death, while sleeping. (With {weapon}, in the {bodypart})",
+      "{attacker} stabbed {victim}, while sleeping. You sneaky little bastard."
+    ],
+    "BLUNT SLEEP": [
+      "{attacker} killed {victim}, while sleeping. (With {weapon}, in the {bodypart})",
+      "{attacker} killed {victim} with a {weapon}, while sleeping."
+    ],
+    "FALL": [
+      "{victim} died from a big fall.",
+      "{victim} believed he could fly, he believed he could touch the sky!"
+    ],
+    "BULLET": [
+      "{attacker} killed {victim}. (In the {bodypart} with {weapon}, from {distance}m)",
+      "{attacker} made {victim} eat some bullets with a {weapon}."
+    ],
+    "POISON": [
+      "{victim} died poisoned.",
+      "{victim} eat the wrong meat and died poisoned."
+    ],
+    "TRAP": [
+      "{victim} stepped on a snap trap.",
+      "{victim} did not watch his steps, died on a trap."
+    ],
+    "RADIATION": [
+      "{victim} died from radiation.",
+      "{victim} did not know that radiation kills."
+    ],
+    "ARROW": [
+      "{attacker} killed {victim} with an arrow on the {bodypart} from {distance}m",
+      "{victim} took an arrow to the knee, and died anyway. (Distance: {distance})"
+    ],
+    "EXPLOSION": [
+      "{victim} blown up by C4.",
+      "{victim} exploded."
+    ]
+  },
+  "SETTINGS": {
+    "DISPLAY SUICIDE DEATH": true,
+    "PREFIX": "DEATH☠NOTES",
+    "DISPLAY PLAYER KILLS": true,
+    "DISPLAY ANIMAL KILLS": true,
+    "DISPLAY MESSAGES IN RADIUS": false,
+    "DISPLAY ANIMAL DEATH": true,
+    "MESSAGES RADIUS": 200.0,
+    "DISPLAY METABOLISM DEATH": true,
+    "BROADCAST TO CONSOLE": true,
+    "DISPLAY TRAP DEATH": true,
+    "DISPLAY EXPLOSION DEATH": true
+  },
+  "WEAPONS": {
+    "HUNTING": "Hunting Bow",
+    "AK47U": "AK47U",
+    "ROCK": "Rock",
+    "HATCHET": "Hatchet",
+    "PICKAXE": "Pickaxe",
+    "BOLT": "Bolt Rifle",
+    "SALVAGED HAMMER": "Salvaged Hammer",
+    "SAWNOFFSHOTGUN": "Sawn-off Shotgun",
+    "SALVAGED AXE": "Salvaged Axe",
+    "BONEKNIFE": "Bone Knife",
+    "STONE SPEAR": "Stone Spear",
+    "WATERPIPE": "Waterpipe Shotgun",
+    "HATCHET STONE": "Stone Hatchet",
+    "EOKA": "Eoka Pistol",
+    "SALVAGED ICEPICK": "Salvaged Icepick",
+    "WOODEN SPEAR": "Wooden Spear",
+    "TORCH": "Torch",
+    "THOMPSON": "Thompson",
+    "REVOLVER": "Revolver"
+  },
+  "COLORS": {
+    "MESSAGE COLOR": "#FFFFFF",
+    "DISTANCE COLOR": "#00FF00",
+    "BODYPART COLOR": "#00FF00",
+    "VICTIM COLOR": "#00FF00",
+    "WEAPON COLOR": "#00FF00",
+    "ANIMAL COLOR": "#00FF00",
+    "ATTACKER COLOR": "#00FF00",
+    "PREFIX COLOR": "#FF0000"
+  },
+  "CONFIG_VERSION": 2.4,
+  "BODY PARTS": {
+    "RIGHT HAND": "Right Hand",
+    "RIGHT THIGH": "Right Thigh",
+    "RIGHT EAR": "Right Ear",
+    "JAW": "Jaw",
+    "PELVIS": "Pelvis",
+    "LEFT HAND": "Left Hand",
+    "RIGHT FOREARM": "Right Forearm",
+    "LEFT CLAVICLE": "Left Clavicle",
+    "HEAD": "Head",
+    "LIPS": "Lips",
+    "RIGHT FOOT": "Right Foot",
+    "NECK": "Neck",
+    "RIGHT CALF": "Right Calf",
+    "LEFT UPPERARM": "Left Upperarm",
+    "LEFT FOOT": "Left Foot",
+    "LEFT SHOULDER": "Left Shoulder",
+    "JOINT": "Joint",
+    "LEFT CALF": "Left Calf",
+    "LEFT THIGH": "Left Thigh",
+    "LEFT TOE": "Left Toe",
+    "LEFT EYE": "Left Eye",
+    "SPINE": "Spine",
+    "LEFT FOREARM": "Left Forearm",
+    "RIGHT FINGERS": "Right Fingers",
+    "RIGHT ULNA": "Right Ulna",
+    "LEFT ULNA": "Left Ulna",
+    "RIGHT CLAVICLE": "Right Clavicle",
+    "LEFT EAR": "Left Ear",
+    "RIGHT TOE": "Right Toe",
+    "RIGHT EYE": "Right Eye",
+    "RIGHT UPPERARM": "Right Upperarm",
+    "LEFT FINGERS": "Left Fingers",
+    "RIGHT SHOULDER": "Right Shoulder"
+  }
+}
