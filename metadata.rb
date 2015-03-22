@@ -1,4 +1,4 @@
-name             'Rust Survival Game Cookbook'
+name             'rust'
 maintainer       'Jonathan Porta'
 maintainer_email 'jonathan@jonathanPorta.com'
 license          'all_rights'
