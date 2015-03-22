@@ -41,7 +41,10 @@ nssm 'RustMultiplayerServer' do
     AppDirectory: 'c:/rust-server/',
     AppStdout: 'c:/rust-server/service-stdout.log',
     AppStderr: 'c:/rust-server/service-stderr.log',
-    AppRotateFiles: 1
+    AppRotateFiles: 1,
+    AppThrottle: 1500,
+    AppExit: 'Default Restart',
+    AppRestartDelay: 1000
   )
   action :install
 end
