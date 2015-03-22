@@ -1,0 +1,25 @@
+# TODO: Can't get this working on a Windows Vagrant box.
+---
+driver:
+  name: vagrant
+  # vagrantfiles:
+  # - Vagrantfile.rb
+
+provisioner:
+  name: chef_solo
+
+platforms:
+  - name: windows-2012R2
+    driver:
+      box: 'atomia/windows-2012R2'
+      # guest: :windows
+      communicator: 'winrm'
+      # network:
+      # - ["forwarded_port", {guest: 3389, host: 3389}]
+      # - ["forwarded_port", {guest: 5985, host: 5985}]
+
+suites:
+  - name: default
+    run_list:
+      - recipe[rust::default]
+    attributes:
