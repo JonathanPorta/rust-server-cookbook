@@ -11,7 +11,12 @@ cookbook_file 'chathandler.lua' do
 end
 
 # playrust.io:
-cookbook_file 'Oxide.Ext.RustIO' do
-  source 'oxide/plugins/Oxide.Ext.RustIO'
-  path 'c:/rust-server/RustDedicated_Data/Managed/Oxide.Ext.RustIO'
+cookbook_file 'Oxide.Ext.RustIO.dll' do
+  source 'oxide/plugins/Oxide.Ext.RustIO.dll'
+  path 'c:/rust-server/RustDedicated_Data/Managed/Oxide.Ext.RustIO.dll'
+end
+
+cookbook_file 'users.cfg' do
+  source 'server/cfg/users.cfg'
+  path 'c:/rust-server/server/server/cfg/users.cfg'
 end
