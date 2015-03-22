@@ -36,3 +36,25 @@ cookbook_file 'deathnotes.json' do
   source 'oxide/config/deathnotes.json'
   path 'c:/rust-server/server/server/oxide/config/deathnotes.json'
 end
+
+# friendsapi:
+cookbook_file '0friendsAPI.lua' do
+  source 'oxide/plugins/0friendsAPI.lua'
+  path 'c:/rust-server/server/server/oxide/plugins/0friendsAPI.lua'
+end
+
+# cookbook_file 'chathandler.json' do
+#   source 'oxide/config/chathandler.json'
+#   path 'c:/rust-server/server/server/oxide/config/chathandler.json'
+# end
+
+# friendsfriendlyfire:
+cookbook_file 'friendsfriendlyfire.lua' do
+  source 'oxide/plugins/friendsfriendlyfire.lua'
+  path 'c:/rust-server/server/server/oxide/plugins/friendsfriendlyfire.lua'
+end
+
+# cookbook_file 'chathandler.json' do
+#   source 'oxide/config/chathandler.json'
+#   path 'c:/rust-server/server/server/oxide/config/chathandler.json'
+# end
