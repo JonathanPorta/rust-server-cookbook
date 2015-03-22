@@ -17,12 +17,14 @@ windows_path node['steamcmd']['install_directory'] do
   action :add
 end
 
+# Install and update the rust server files
 rust_steamcmd '258550' do
   app_id
   action :install
   path 'c:/rust-server/'
 end
 
+# Create a start script for the server
 template 'c:/rust-server/start.ps1' do
   source 'rust-server.ps1.erb'
   variables({
@@ -37,3 +39,21 @@ template 'c:/rust-server/start.ps1' do
     rcon_password: '',
     rcon_ip: ''
   })
+end
+
+# Create a windows service for the start script
+ruby_block 'create service' do
+  block do
+    Chef::Application::WindowsServiceManager.new(
+      service_name: "RustMultiplayerServer",
+      service_display_name: "RustMultiplayerServer",
+      service_description: 'Service configuration for the Rust multiplayer server.',
+      service_file_path: "c:/rust-server/start.ps1",
+    ).run(%w{-a install})
+  end
+end
+
+# Install and enable the service
+service 'RustMultiplayerServer' do
+  action [:enable, :start]
+end
