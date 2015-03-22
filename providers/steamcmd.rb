@@ -24,11 +24,12 @@ action :update do
 end
 
 def load_current_resource
-  @current_resource = Chef::Resource::RustSteamcmd.new(@new_resource.app_id)
+  @current_resource = Chef::Resource::RustSteamcmd.new(@new_resource.name)
+
+  @current_resource.name(@new_resource.name)
   @current_resource.app_id(@new_resource.app_id)
   @current_resource.path(@new_resource.path)
   @current_resource.beta(@new_resource.beta)
-  @current_resource.validate(@new_resource.validate)
 
   if directory_exists?(@current_resource.path)
     # TODO: We should probably be smarter about this and actually check the contents

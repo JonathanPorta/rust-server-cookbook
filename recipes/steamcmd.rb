@@ -17,8 +17,8 @@ windows_path node['steamcmd']['install_directory'] do
   action :add
 end
 
-rust_steamcmd do
-  app_id '258550'
+rust_steamcmd '258550' do
+  app_id
   action :install
   path 'c:/rust-server/'
 end
