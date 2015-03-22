@@ -26,7 +26,7 @@ end
 
 # Create a start script for the server
 template 'c:/rust-server/start.ps1' do
-  source 'rust-server.ps1.erb'
+  source 'rust-server.ps1'
   variables({
     install_path: 'c:/rust-server/',
     name: '~aaaamazing PVE Server - No Sleepers - Noob friendly - rust.rurd4me.com',
