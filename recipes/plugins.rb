@@ -26,7 +26,8 @@ cookbook_file 'rustio.json' do
   path 'c:/rust-server/server/server/oxide/config/rustio.json'
 end
 
-cookbook_file 'users.cfg' do
-  source 'server/cfg/users.cfg'
-  path 'c:/rust-server/server/server/cfg/users.cfg'
+# deathnotes:
+cookbook_file 'deathnotes.py' do
+  source 'oxide/plugins/deathnotes.py'
+  path 'c:/rust-server/server/server/oxide/plugins/deathnotes.py'
 end
