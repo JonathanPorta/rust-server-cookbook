@@ -19,5 +19,5 @@ end
 
 rust_steamcmd '258550' do
   action :install
-  path node['rust']['install_directory']
+  path 'c:/rust-server/'
 end
