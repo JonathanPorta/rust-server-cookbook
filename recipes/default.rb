@@ -14,6 +14,8 @@ rust_steamcmd '258550' do
   path 'c:/rust-server/'
 end
 
+include_recipe 'rust::oxide'
+
 # Create a start script for the server
 template 'c:/rust-server/start.ps1' do
   source 'rust-server.ps1.erb'
