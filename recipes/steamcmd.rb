@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: endpoint
+# Cookbook Name:: rust
 # Recipe:: steamcmd
 #
 # Copyright (c) 2015 The Authors, All Rights Reserved.
@@ -18,5 +18,6 @@ windows_path node['steamcmd']['install_directory'] do
 end
 
 rust_steamcmd '258550' do
+  action :install
   path node['rust']['install_directory']
 end
