@@ -58,3 +58,9 @@ cookbook_file 'friendsfriendlyfire.json' do
   source 'oxide/config/friendsfriendlyfire.json'
   path 'c:/rust-server/server/server/oxide/config/friendsfriendlyfire.json'
 end
+
+# pvpswitch:
+cookbook_file 'pvpswitch.lua' do
+  source 'oxide/plugins/pvpswitch.lua'
+  path 'c:/rust-server/server/server/oxide/plugins/pvpswitch.lua'
+end
