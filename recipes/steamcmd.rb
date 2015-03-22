@@ -34,6 +34,6 @@ template 'c:/rust-server/start.ps1' do
     seed: 696969
     worldsize: 4000
     rcon_port: 5718
-    rcon_password:
-    rcon_ip:
+    rcon_password: ''
+    rcon_ip: ''
   }
