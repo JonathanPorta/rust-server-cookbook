@@ -17,8 +17,8 @@ end
 include_recipe 'rust::oxide'
 
 # Drop off the moderator/owner config
-template 'c:/rust-server/server/server/cfg/users.cfg' do
-  source 'server/cfg/users.cfg.erb'
+cookbook_file 'server/cfg/users.cfg' do
+  path 'c:/rust-server/server/server/cfg/users.cfg'
 end
 
 # Create a start script for the server
