@@ -50,7 +50,7 @@ def install_steam_app
   # Install app via powershell
   powershell_script "Installing Steam App #{ new_resource.app_id }" do
     code <<-EOH
-      steamcmd login anonymous +force_install_dir #{ new_resource.path } #{ new_resource.app_id } #{ beta } validate +quit
+      steamcmd.exe login anonymous +force_install_dir #{ new_resource.path } #{ new_resource.app_id } #{ beta } validate +quit
     EOH
   end
 end
@@ -64,7 +64,7 @@ def update_steam_app
   # Install app via powershell
   powershell_script "Installing Steam App #{ new_resource.app_id }" do
     code <<-EOH
-      steamcmd login anonymous +force_install_dir #{ new_resource.path } +app_update #{ new_resource.app_id } #{ beta } validate +quit
+      steamcmd.exe login anonymous +force_install_dir #{ new_resource.path } +app_update #{ new_resource.app_id } #{ beta } validate +quit
     EOH
   end
 end
