@@ -41,17 +41,22 @@ template 'c:/rust-server/start.ps1' do
   })
 end
 
+# 
+# require 'chef/application/windows_service_manager'
+# ruby_block 'create service' do
+#   block do
+#     Chef::Application::WindowsServiceManager.new(
+#       service_name: "RustMultiplayerServer",
+#       service_display_name: "RustMultiplayerServer",
+#       service_description: 'Service configuration for the Rust multiplayer server.',
+#       service_file_path: "c:/rust-server/start.ps1",
+#     ).run(%w{-a install})
+#   end
+# end
 # Create a windows service for the start script
-require 'chef/application/windows_service_manager'
-ruby_block 'create service' do
-  block do
-    Chef::Application::WindowsServiceManager.new(
-      service_name: "RustMultiplayerServer",
-      service_display_name: "RustMultiplayerServer",
-      service_description: 'Service configuration for the Rust multiplayer server.',
-      service_file_path: "c:/rust-server/start.ps1",
-    ).run(%w{-a install})
-  end
+execute 'RustMultiplayerServer.service' do
+  command 'sc.exe create RustMultiplayerServer binPath=c:/rust-server/start.ps1 DisplayName=RustMultiplayerServer'
+  action :run
 end
 
 # Install and enable the service
