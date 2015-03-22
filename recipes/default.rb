@@ -16,6 +16,11 @@ end
 
 include_recipe 'rust::oxide'
 
+# Drop off the moderator/owner config
+template 'c:/rust-server/server/server/cfg/users.cfg' do
+  source 'server/cfg/users.cfg.erb'
+end
+
 # Create a start script for the server
 template 'c:/rust-server/start.ps1' do
   source 'rust-server.ps1.erb'
@@ -31,7 +36,6 @@ template 'c:/rust-server/start.ps1' do
     rcon_password: '',
     rcon_ip: ''
   })
-  notifies :restart, 'service[RustMultiplayerServer]', :immediately
 end
 
 # Install, configure and start the server service
