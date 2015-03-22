@@ -42,6 +42,7 @@ template 'c:/rust-server/start.ps1' do
 end
 
 # Create a windows service for the start script
+require 'chef/application/windows_service_manager'
 ruby_block 'create service' do
   block do
     Chef::Application::WindowsServiceManager.new(
