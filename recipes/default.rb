@@ -6,7 +6,6 @@
 
 include_recipe 'rust::steamcmd'
 include_recipe 'nssm'
-include_recipe 'openssl'
 
 # Install and update the rust server files
 rust_steamcmd '258550' do
@@ -25,6 +24,7 @@ cookbook_file 'users.cfg' do
 end
 
 # Create a start script for the server
+require Chef::OpenSSL::Password
 template 'c:/rust-server/start.ps1' do
   source 'rust-server.ps1.erb'
   variables({
