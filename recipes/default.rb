@@ -6,6 +6,7 @@
 
 include_recipe 'rust::steamcmd'
 include_recipe 'nssm'
+include_recipe 'openssl'
 
 # Install and update the rust server files
 rust_steamcmd '258550' do
@@ -35,8 +36,8 @@ template 'c:/rust-server/start.ps1' do
     seed: 696969,
     worldsize: 4000,
     rcon_port: 5718,
-    rcon_password: '',
-    rcon_ip: ''
+    rcon_password: secure_password(40),
+    rcon_ip: '127.0.0.1'
   })
 end
 

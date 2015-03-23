@@ -8,3 +8,4 @@ version          '0.0.1'
 
 depends 'windows'
 depends 'nssm'
+depends 'openssl'
