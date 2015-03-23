@@ -5,6 +5,7 @@
 # Copyright (c) 2015 The Authors, All Rights Reserved.
 # ::Chef::Recipe.send(:include, Chef::OpenSSL::Password)
 Chef::Recipe.send(:include, Opscode::OpenSSL::Password)
+rcon_password = secure_password
 include_recipe 'rust::steamcmd'
 include_recipe 'nssm'
 
@@ -36,7 +37,7 @@ template 'c:/rust-server/start.ps1' do
     seed: 696969,
     worldsize: 4000,
     rcon_port: 5718,
-    rcon_password: secure_password,
+    rcon_password: rcon_password,
     rcon_ip: '127.0.0.1'
   })
 end
