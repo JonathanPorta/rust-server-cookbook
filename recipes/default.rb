@@ -3,7 +3,7 @@
 # Recipe:: default
 #
 # Copyright (c) 2015 The Authors, All Rights Reserved.
-
+::Chef::Recipe.send(:include, Chef::OpenSSL::Password)
 include_recipe 'rust::steamcmd'
 include_recipe 'nssm'
 
@@ -24,7 +24,6 @@ cookbook_file 'users.cfg' do
 end
 
 # Create a start script for the server
-require Chef::OpenSSL::Password
 template 'c:/rust-server/start.ps1' do
   source 'rust-server.ps1.erb'
   variables({
