@@ -49,6 +49,13 @@ def install_steam_app
 
   # Install app via powershell
   # TODO: Figure out how to handle the path to the steamcmd executable. It's in the path, but the current ps windows seems to not have it.
+
+  powershell_script "Init steamcmd" do
+    code <<-EOH
+      c:/steamcmd/steamcmd.exe +login anonymous +quit
+    EOH
+  end
+
   powershell_script "Installing Steam App #{ new_resource.app_id }" do
     code <<-EOH
       c:/steamcmd/steamcmd.exe +login anonymous +force_install_dir #{ new_resource.path } +app_update #{ new_resource.app_id } #{ beta } validate +quit

@@ -9,9 +9,9 @@ provisioner:
   name: chef_solo
 
 platforms:
-  - name: windows-2012R2
+  - name: windows-2012r2
     driver:
-      box: 'atomia/windows-2012R2'
+      box: 'jonathanporta/windows-2012r2-standard'
       # guest: :windows
       communicator: 'winrm'
       # network:

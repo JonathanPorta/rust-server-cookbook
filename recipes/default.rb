@@ -3,7 +3,7 @@
 # Recipe:: default
 #
 # Copyright (c) 2015 The Authors, All Rights Reserved.
-# ::Chef::Recipe.send(:include, Chef::OpenSSL::Password)
+
 Chef::Recipe.send(:include, Opscode::OpenSSL::Password)
 rcon_password = secure_password
 include_recipe 'rust::steamcmd'
@@ -19,10 +19,15 @@ end
 include_recipe 'rust::oxide'
 include_recipe 'rust::plugins'
 
+# Ensure that the server's config directory exists
+directory node['rust']['config_directory'] do
+  recursive true
+end
+
 # Drop off the moderator/owner config
 cookbook_file 'users.cfg' do
   source 'server/cfg/users.cfg'
-  path 'c:/rust-server/server/server/cfg/users.cfg'
+  path "#{ node['rust']['config_directory'] }users.cfg"
 end
 
 # Create a start script for the server

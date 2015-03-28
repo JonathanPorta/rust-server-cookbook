@@ -6,8 +6,9 @@
 
 include_recipe 'windows'
 
-# Stop the service before we apply the oxide patch
+# Stop the service, if running, before we apply the oxide patch
 service 'RustMultiplayerServer' do
+  ignore_failure true
   action :stop
 end
 
