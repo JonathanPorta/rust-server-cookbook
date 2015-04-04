@@ -9,11 +9,23 @@ rcon_password = secure_password
 include_recipe 'rust::steamcmd'
 include_recipe 'nssm'
 
+# Ensure that the backup directory exists
+directory node['rust']['backups_directory'] do
+  recursive true
+end
+
+# Backup current server install
+windows_zipfile "#{ node['rust']['backups_directory'] }#{ Time.now.strftime("%Y-%m-%d-%H%M") }.zip" do
+  source node['rust']['install_directory']
+  action :zip
+  only_if {::File.exists?(node['rust']['install_directory'])}
+end
+
 # Install and update the rust server files
 rust_steamcmd '258550' do
   app_id
   action :install
-  path 'c:/rust-server/'
+  path node['rust']['install_directory']
 end
 
 include_recipe 'rust::oxide'
