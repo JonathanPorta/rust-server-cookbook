@@ -5,8 +5,7 @@
 # Copyright (c) 2015 The Authors, All Rights Reserved.
 
 Chef::Recipe.send(:include, Opscode::OpenSSL::Password)
-rcon_password = secure_password
-include_recipe 'rust::steamcmd'
+include_recipe 'steamcmd::install'
 include_recipe 'nssm'
 
 # Ensure that the backup directory exists
@@ -22,9 +21,7 @@ windows_zipfile "#{ node['rust']['backups_directory'] }#{ Time.now.strftime("%Y-
 end
 
 # Install and update the rust server files
-rust_steamcmd '258550' do
-  app_id
-  action :install
+steamcmd '258550' do
   path node['rust']['install_directory']
 end
 
@@ -43,10 +40,10 @@ cookbook_file 'users.cfg' do
 end
 
 # Create a start script for the server
-template 'c:/rust-server/start.ps1' do
+template "#{ node['rust']['install_directory'] }start.ps1" do
   source 'rust-server.ps1.erb'
   variables({
-    install_path: 'c:/rust-server/',
+    install_path: node['rust']['install_directory'],
     name: '~aaaamazing PVE Server - No Sleepers - Noob friendly - rust.rurd4me.com',
     maxplayers: 50,
     port: 28055,
@@ -54,7 +51,7 @@ template 'c:/rust-server/start.ps1' do
     seed: 696969,
     worldsize: 4000,
     rcon_port: 5718,
-    rcon_password: rcon_password,
+    rcon_password: lazy { secure_password },
     rcon_ip: '127.0.0.1'
   })
 end
@@ -62,18 +59,18 @@ end
 # Install, configure and start the server service
 nssm 'RustMultiplayerServer' do
   program 'C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe'
-  args '-noexit c:/rust-server/start.ps1'
+  args "-noexit #{ node['rust']['install_directory'] }start.ps1"
   params(
     DisplayName: 'RustMultiplayerServer',
     Description: 'Service in charge of the Rust multiplayer server.',
-    AppDirectory: 'c:/rust-server/',
-    AppStdout: 'c:/rust-server/service-stdout.log',
-    AppStderr: 'c:/rust-server/service-stderr.log',
+    AppDirectory: node['rust']['install_directory'],
+    AppStdout: "#{ node['rust']['install_directory'] }service-stdout.log",
+    AppStderr: "#{ node['rust']['install_directory'] }service-stderr.log",
     AppRotateFiles: 1,
     AppThrottle: 1500,
     AppExit: 'Default Restart',
     AppRestartDelay: 1000
   )
   action :install
-  notifies :restart, 'service[RustMultiplayerServer]', :immediately
+  notifies :restart, 'service[RustMultiplayerServer]', :delayed
 end
