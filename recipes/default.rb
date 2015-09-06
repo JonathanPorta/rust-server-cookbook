@@ -52,7 +52,7 @@ template "#{ node['rust']['install_directory'] }start.ps1" do
     worldsize: 4000,
     rcon_port: 5718,
     rcon_password: lazy { secure_password },
-    rcon_ip: '127.0.0.1'
+    rcon_ip: '0.0.0.0'
   })
 end
 
