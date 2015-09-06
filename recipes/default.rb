@@ -72,7 +72,7 @@ nssm 'RustMultiplayerServer' do
     AppRestartDelay: 1000
   )
   action :install
-  notifies :restart, 'service[RustMultiplayerServer]', :delayed
+  #notifies :restart, 'service[RustMultiplayerServer]', :delayed
 end
 
 windows_firewall_rule 'RustServer-TCP' do
