@@ -1,7 +1,9 @@
 {
   "displayMonuments": true,
+  "hideSpecificMonuments": [],
   "displayBuildings": false,
   "displayMortality": true,
+  "enableLocationSharing": true,
   "broadcastSpawns": true,
   "broadcastDeaths": true,
   "broadcastChat": true,
