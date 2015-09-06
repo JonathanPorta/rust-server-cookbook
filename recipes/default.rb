@@ -77,6 +77,12 @@ end
 
 windows_firewall_rule 'RustServer-TCP' do
   localport '28055'
-  protocol 'any'
+  protocol 'TCP'
+  firewall_action :allow
+end
+
+windows_firewall_rule 'RustServer-UDP' do
+  localport '28055'
+  protocol 'UDP'
   firewall_action :allow
 end
