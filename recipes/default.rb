@@ -74,3 +74,9 @@ nssm 'RustMultiplayerServer' do
   action :install
   notifies :restart, 'service[RustMultiplayerServer]', :delayed
 end
+
+windows_firewall_rule 'RustServer-TCP' do
+  localport '28055'
+  protocol 'any'
+  firewall_action :allow
+end
