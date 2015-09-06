@@ -25,8 +25,8 @@ steamcmd '258550' do
   path node['rust']['install_directory']
 end
 
-# include_recipe 'rust::oxide'
-# include_recipe 'rust::plugins'
+include_recipe 'rust::oxide'
+include_recipe 'rust::plugins'
 
 # Ensure that the server's config directory exists
 directory node['rust']['config_directory'] do
@@ -34,10 +34,10 @@ directory node['rust']['config_directory'] do
 end
 
 # Drop off the moderator/owner config
-# cookbook_file 'users.cfg' do
-#   source 'server/cfg/users.cfg'
-#   path "#{ node['rust']['config_directory'] }users.cfg"
-# end
+cookbook_file 'users.cfg' do
+  source 'server/cfg/users.cfg'
+  path "#{ node['rust']['config_directory'] }users.cfg"
+end
 
 # Create a start script for the server
 template "#{ node['rust']['install_directory'] }start.ps1" do
@@ -75,21 +75,9 @@ end
 #   #notifies :restart, 'service[RustMultiplayerServer]', :delayed
 # end
 
-windows_firewall_rule 'RustServer-TCP' do
-  localport '28015'
-  protocol 'TCP'
-  firewall_action :allow
-end
-
 windows_firewall_rule 'RustServer-UDP' do
   localport '28015'
   protocol 'UDP'
-  firewall_action :allow
-end
-
-windows_firewall_rule 'RustServer-TCP' do
-  localport '28016'
-  protocol 'TCP'
   firewall_action :allow
 end
 
@@ -102,11 +90,5 @@ end
 windows_firewall_rule 'RustServer-RCON-TCP' do
   localport '5718'
   protocol 'TCP'
-  firewall_action :allow
-end
-
-windows_firewall_rule 'RustServer-RCON-UDP' do
-  localport '5718'
-  protocol 'UDP'
   firewall_action :allow
 end
