@@ -86,3 +86,15 @@ windows_firewall_rule 'RustServer-UDP' do
   protocol 'UDP'
   firewall_action :allow
 end
+
+windows_firewall_rule 'RustServer-RCON-TCP' do
+  localport '5718'
+  protocol 'TCP'
+  firewall_action :allow
+end
+
+windows_firewall_rule 'RustServer-RCON-UDP' do
+  localport '5718'
+  protocol 'UDP'
+  firewall_action :allow
+end
