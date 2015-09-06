@@ -25,8 +25,8 @@ steamcmd '258550' do
   path node['rust']['install_directory']
 end
 
-include_recipe 'rust::oxide'
-include_recipe 'rust::plugins'
+#include_recipe 'rust::oxide'
+#include_recipe 'rust::plugins'
 
 # Ensure that the server's config directory exists
 directory node['rust']['config_directory'] do
