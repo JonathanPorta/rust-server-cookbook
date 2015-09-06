@@ -46,7 +46,7 @@ template "#{ node['rust']['install_directory'] }start.ps1" do
     install_path: node['rust']['install_directory'],
     name: 'Asiago -> 20X|TP|KITS|INSTACRAFT|LIVEMAP|WIPED 9/6 - rust.rurd4me.com',
     maxplayers: 50,
-    port: 28055,
+    port: 28015,
     identity: 'server',
     seed: 85364, # http://map.playrust.io/?Procedural%20Map_6000_85364
     worldsize: 6000,
@@ -76,13 +76,25 @@ end
 # end
 
 windows_firewall_rule 'RustServer-TCP' do
-  localport '28055'
+  localport '28015'
   protocol 'TCP'
   firewall_action :allow
 end
 
 windows_firewall_rule 'RustServer-UDP' do
-  localport '28055'
+  localport '28015'
+  protocol 'UDP'
+  firewall_action :allow
+end
+
+windows_firewall_rule 'RustServer-TCP' do
+  localport '28016'
+  protocol 'TCP'
+  firewall_action :allow
+end
+
+windows_firewall_rule 'RustServer-UDP' do
+  localport '28016'
   protocol 'UDP'
   firewall_action :allow
 end
