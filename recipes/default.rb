@@ -25,8 +25,8 @@ steamcmd '258550' do
   path node['rust']['install_directory']
 end
 
-include_recipe 'rust::oxide'
-include_recipe 'rust::plugins'
+# include_recipe 'rust::oxide'
+# include_recipe 'rust::plugins'
 
 # Ensure that the server's config directory exists
 directory node['rust']['config_directory'] do
@@ -34,10 +34,10 @@ directory node['rust']['config_directory'] do
 end
 
 # Drop off the moderator/owner config
-cookbook_file 'users.cfg' do
-  source 'server/cfg/users.cfg'
-  path "#{ node['rust']['config_directory'] }users.cfg"
-end
+# cookbook_file 'users.cfg' do
+#   source 'server/cfg/users.cfg'
+#   path "#{ node['rust']['config_directory'] }users.cfg"
+# end
 
 # Create a start script for the server
 template "#{ node['rust']['install_directory'] }start.ps1" do
@@ -47,7 +47,7 @@ template "#{ node['rust']['install_directory'] }start.ps1" do
     name: 'Asiago -> 20X|TP|KITS|INSTACRAFT|LIVEMAP|WIPED 9/6 - rust.rurd4me.com',
     maxplayers: 50,
     port: 28055,
-    identity: 'Asiago',
+    identity: 'server',
     seed: 85364, # http://map.playrust.io/?Procedural%20Map_6000_85364
     worldsize: 6000,
     rcon_port: 5718,
@@ -56,24 +56,24 @@ template "#{ node['rust']['install_directory'] }start.ps1" do
   })
 end
 
-# Install, configure and start the server service
-nssm 'RustMultiplayerServer' do
-  program 'C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe'
-  args "-noexit #{ node['rust']['install_directory'] }start.ps1"
-  params(
-    DisplayName: 'RustMultiplayerServer',
-    Description: 'Service in charge of the Rust multiplayer server.',
-    AppDirectory: node['rust']['install_directory'],
-    AppStdout: "#{ node['rust']['install_directory'] }service-stdout.log",
-    AppStderr: "#{ node['rust']['install_directory'] }service-stderr.log",
-    AppRotateFiles: 1,
-    AppThrottle: 1500,
-    AppExit: 'Default Restart',
-    AppRestartDelay: 1000
-  )
-  action :install
-  #notifies :restart, 'service[RustMultiplayerServer]', :delayed
-end
+# # Install, configure and start the server service
+# nssm 'RustMultiplayerServer' do
+#   program 'C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe'
+#   args "-noexit #{ node['rust']['install_directory'] }start.ps1"
+#   params(
+#     DisplayName: 'RustMultiplayerServer',
+#     Description: 'Service in charge of the Rust multiplayer server.',
+#     AppDirectory: node['rust']['install_directory'],
+#     AppStdout: "#{ node['rust']['install_directory'] }service-stdout.log",
+#     AppStderr: "#{ node['rust']['install_directory'] }service-stderr.log",
+#     AppRotateFiles: 1,
+#     AppThrottle: 1500,
+#     AppExit: 'Default Restart',
+#     AppRestartDelay: 1000
+#   )
+#   action :install
+#   #notifies :restart, 'service[RustMultiplayerServer]', :delayed
+# end
 
 windows_firewall_rule 'RustServer-TCP' do
   localport '28055'
