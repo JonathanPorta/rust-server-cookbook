@@ -44,12 +44,12 @@ template "#{ node['rust']['install_directory'] }start.ps1" do
   source 'rust-server.ps1.erb'
   variables({
     install_path: node['rust']['install_directory'],
-    name: '~aaaamazing PVE Server - No Sleepers - Noob friendly - rust.rurd4me.com',
+    name: 'Asiago -> 20X|TP|KITS|INSTACRAFT|LIVEMAP|WIPED 9/6 - rust.rurd4me.com',
     maxplayers: 50,
     port: 28055,
-    identity: 'server',
-    seed: 696969,
-    worldsize: 4000,
+    identity: 'Asiago',
+    seed: 85364, # http://map.playrust.io/?Procedural%20Map_6000_85364
+    worldsize: 6000,
     rcon_port: 5718,
     rcon_password: lazy { secure_password },
     rcon_ip: '0.0.0.0'
