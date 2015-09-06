@@ -83,21 +83,21 @@ windows_firewall_rule 'RustServer-UDP' do
 end
 
 # Query part - may or may not be needed anymore, couldn't get a definitive answer.
-windows_firewall_rule 'RustServer-UDP' do
+windows_firewall_rule 'RustQuery-UDP' do
   localport '28016'
   protocol 'UDP'
   firewall_action :allow
 end
 
 # Playrust.io HTTP for livemap
-windows_firewall_rule 'RustServer-UDP' do
+windows_firewall_rule 'RustLivemap-TCP' do
   localport '28015'
   protocol 'TCP'
   firewall_action :allow
 end
 
 # RCON Port
-windows_firewall_rule 'RustServer-RCON-TCP' do
+windows_firewall_rule 'RustRCON-TCP' do
   localport '5718'
   protocol 'TCP'
   firewall_action :allow
