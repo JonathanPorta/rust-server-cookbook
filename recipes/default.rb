@@ -52,7 +52,15 @@ template "#{ node['rust']['install_directory'] }start.ps1" do
     worldsize: 6000,
     rcon_port: 5718,
     rcon_password: lazy { secure_password },
-    rcon_ip: '0.0.0.0'
+    rcon_ip: '0.0.0.0',
+    server_description: 'High spawn + instant craft\n Get started fast. Build something huge. Blow it up. Repeat.',
+    server_headerimage: 'http://i.imgur.com/eIIf9Lz.png',
+    server_url: 'http://rust.rurd4me.com:28015',
+    spawn_max_density: 20,
+    spawn_min_density: 0.1,
+    spawn_max_rate: 1,
+    spawn_min_rate: 0.1,
+    craft_instant: 'True'
   })
 end
 
