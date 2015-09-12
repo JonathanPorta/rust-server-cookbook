@@ -1,14 +1,14 @@
 PLUGIN.Title        = "FriendsAPI"
 PLUGIN.Description  = "An API to manage friends"
 PLUGIN.Author       = "#Domestos"
-PLUGIN.Version      = V(1, 2, 0)
-PLUGIN.HasConfig    = true
+PLUGIN.Version      = V(1, 2, 4)
 PLUGIN.ResourceID   = 686
 
-
+local debugMode = false
 
 function PLUGIN:Init()
     command.AddChatCommand("friend", self.Object, "cmdFriend")
+    command.AddConsoleCommand("friendsapi.debug", self.Object, "ccmdDebug")
     self:LoadDefaultConfig()
     self:LoadDataFile()
 end
@@ -42,22 +42,79 @@ function PLUGIN:SaveDataFile()
     datafile.SaveDataTable(DataFile)
 end
 -- --------------------------------
+-- prints to server console
+-- --------------------------------
+local function printToConsole(msg)
+    global.ServerConsole.PrintColoured(System.ConsoleColor.Cyan, msg)
+end
+-- --------------------------------
+-- debug print
+-- --------------------------------
+local function debug(msg)
+    if not debugMode then return end
+    global.ServerConsole.PrintColoured(System.ConsoleColor.Yellow, msg)
+end
+-- --------------------------------
+-- try to find a BasePlayer
+-- returns (int) numFound, (table) playerTbl
+-- --------------------------------
+local function FindPlayer(NameOrIpOrSteamID, checkSleeper)
+    local playerTbl = {}
+    local playerList = global.BasePlayer.activePlayerList:GetEnumerator()
+    while playerList:MoveNext() do
+        if playerList.Current then
+            local currPlayer = playerList.Current
+            local currSteamID = rust.UserIDFromPlayer(currPlayer)
+            local currIP = currPlayer.net.connection.ipaddress
+            if currPlayer.displayName == NameOrIpOrSteamID or currSteamID == NameOrIpOrSteamID or currIP == NameOrIpOrSteamID then
+                table.insert(playerTbl, currPlayer)
+                return #playerTbl, playerTbl
+            end
+            local matched, _ = string.find(currPlayer.displayName:lower(), NameOrIpOrSteamID:lower(), 1, true)
+            if matched then
+                table.insert(playerTbl, currPlayer)
+            end
+        end
+    end
+    if checkSleeper then
+        local sleeperList = global.BasePlayer.sleepingPlayerList:GetEnumerator()
+        while sleeperList:MoveNext() do
+            if sleeperList.Current then
+                local currPlayer = sleeperList.Current
+                local currSteamID = rust.UserIDFromPlayer(currPlayer)
+                if currPlayer.displayName == NameOrIpOrSteamID or currSteamID == NameOrIpOrSteamID then
+                    table.insert(playerTbl, currPlayer)
+                    return #playerTbl, playerTbl
+                end
+                local matched, _ = string.find(currPlayer.displayName:lower(), NameOrIpOrSteamID:lower(), 1, true)
+                if matched then
+                    table.insert(playerTbl, currPlayer)
+                end
+            end
+        end
+    end
+    return #playerTbl, playerTbl
+end
+-- --------------------------------
 -- builds output messages by replacing wildcards
 -- --------------------------------
 local function buildOutput(str, tags, replacements)
     for i = 1, #tags do
-        str = string.gsub(str, tags[i], replacements[i])
+        str = str:gsub(tags[i], replacements[i])
     end
     return str
 end
 -- --------------------------------
 -- handles chat command /friend
 -- --------------------------------
-function PLUGIN:cmdFriend(player, cmd, args)
-if not player then return end
+function PLUGIN:cmdFriend(player, _, args)
+    debug("## [FriendsAPI debug] cmdFriend() ##")
+    if not player then return end
     local args = self:ArgsToTable(args, "chat")
     local func, target = args[1], args[2]
     local playerSteamID = rust.UserIDFromPlayer(player)
+    debug("func: "..tostring(func))
+    debug("target: "..tostring(target))
     if not func or func ~= "add" and func ~= "remove" and func ~= "list" then
         rust.SendChatMessage(player, "Syntax: /friend <add/remove> <name/steamID> or /friend list")
         return
@@ -84,9 +141,10 @@ if not player then return end
                 end
             end
             -- remove comma at the end
-            if string.sub(friendlistString, -2, -2) == "," then
-                friendlistString = string.sub(friendlistString, 1, -3)
+            if friendlistString:sub(-2, -2) == "," then
+                friendlistString = friendlistString:sub(1, -3)
             end
+            debug("friendlistString: "..friendlistString)
             -- output friendlist
             if #friendlistTbl >= 1 then
                 rust.SendChatMessage(player, buildOutput(self.Config.Messages.List, {"{count}"}, {"["..tostring(#friendlist).."/"..tostring(self.Config.Settings.MaxFriends).."]"}))
@@ -99,35 +157,47 @@ if not player then return end
             end
             return
         end
+        debug("no friends")
         rust.SendChatMessage(player, self.Config.Messages.NoFriends)
         return
     end
-    local targetPlayer = global.BasePlayer.Find(target)
-    if func == "remove" then
-        local removed = self:removeFriend(playerSteamID, target)
-        if not removed then
-            rust.SendChatMessage(player, buildOutput(self.Config.Messages.NotOnFriendlist, {"{target}"}, {target}))
-        else
-            if targetPlayer then
-                rust.SendChatMessage(player, buildOutput(self.Config.Messages.FriendRemoved, {"{target}"}, {targetPlayer.displayName}))
-            else
-                rust.SendChatMessage(player, buildOutput(self.Config.Messages.FriendRemoved, {"{target}"}, {target}))
-            end
-        end
-        return
-    end
-    if not targetPlayer then
+    local numFound, targetPlayerTbl = FindPlayer(target, true)
+    debug("numFound: "..tostring(numFound))
+    if numFound == 0 then
         rust.SendChatMessage(player, self.Config.Messages.PlayerNotFound)
         return
     end
+    if numFound > 1 then
+        local targetNameString = ""
+        for i = 1, numFound do
+            targetNameString = targetNameString..targetPlayerTbl[i].displayName..", "
+        end
+        rust.SendChatMessage(player, "Found more than one player, be more specific:")
+        rust.SendChatMessage(player, targetNameString)
+        return
+    end
+    local targetPlayer = targetPlayerTbl[1]
     local targetName = targetPlayer.displayName
     local targetSteamID = rust.UserIDFromPlayer(targetPlayer)
+    debug("targetName: "..targetName)
+    debug("targetSteamID "..targetSteamID)
+    if func == "remove" then
+        local removed = self:removeFriend(playerSteamID, targetSteamID)
+        debug("removed: "..tostring(removed))
+        if not removed then
+            rust.SendChatMessage(player, buildOutput(self.Config.Messages.NotOnFriendlist, {"{target}"}, {targetName}))
+        else
+            rust.SendChatMessage(player, buildOutput(self.Config.Messages.FriendRemoved, {"{target}"}, {targetName}))
+        end
+        return
+    end
     if func == "add" then
         if player == targetPlayer then
             rust.SendChatMessage(player, self.Config.Messages.CantAddSelf)
             return
         end
         local added = self:addFriend(player, targetSteamID, targetName)
+        debug("added: "..tostring(added))
         if added == "max" then
             rust.SendChatMessage(player, self.Config.Messages.FriendlistFull)
             return
@@ -277,4 +347,20 @@ end
 -- --------------------------------
 function PLUGIN:SendHelpText(player)
     rust.SendChatMessage(player, self.Config.Messages.HelpText)
+end
+-- --------------------------------
+-- activate/deactivate debug mode
+-- --------------------------------
+function PLUGIN:ccmdDebug(arg)
+    if arg.connection then return end -- terminate if not server console
+    local args = self:ArgsToTable(arg, "console")
+    if args[1] == "true" then
+        debugMode = true
+        printToConsole("[FriendsAPI]: debug mode activated")
+    elseif args[1] == "false" then
+        debugMode = false
+        printToConsole("[FriendsAPI]: debug mode deactivated")
+    else
+        printToConsole("Syntax: friendsapi.debug true/false")
+    end
 end

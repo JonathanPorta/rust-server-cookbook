@@ -1,0 +1,10 @@
+{
+  "CustomHelpText": [
+    "/ad off -- turn off the automatic closing doors",
+    "/ad <time> -- set time for automatic closing doors"
+  ],
+  "Settings": {
+    "AllowHelpTextFromOtherPlugins": "true",
+    "UseCustomHelpText": "true"
+  }
+}
